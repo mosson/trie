@@ -34,4 +34,14 @@ export class Trie {
     }
     return node.children.indexOf(Trie.leaf) >= 0;
   }
+
+  public delete(seq: string): void {
+    let node: Node | undefined = this.root;
+    for (let i = 0; i < seq.length; i++) {
+      node = node.search(seq.substr(i, 1));
+      if (!node) return;
+    }
+
+    node.children.splice(node.children.indexOf(Trie.leaf), 1);
+  }
 }
